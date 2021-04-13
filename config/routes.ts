@@ -93,13 +93,13 @@ export default [
         path: '/userinfo/c',
         name: '密码设置',
         icon: 'smile',
-        component: './Welcome',
+        component: './UserInfo/BindPwd',
       },
       {
         path: '/userinfo/d',
         name: '我的认证',
         icon: 'crown',
-        component: './Welcome',
+        component: './UserInfo/Authentication',
       },
       {
         path: '/userinfo/e',

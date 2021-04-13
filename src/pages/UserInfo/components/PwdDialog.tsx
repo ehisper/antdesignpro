@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Modal, Button, message } from 'antd';
-import { MobileOutlined, MailOutlined, ExclamationCircleTwoTone } from '@ant-design/icons';
+import { message } from 'antd';
+import { MobileOutlined, MailOutlined, ExclamationCircleTwoTone, LockOutlined } from '@ant-design/icons';
 import {
   ModalForm,
   ProFormText,
@@ -11,6 +11,7 @@ import styles from '../index.less';
 export type FormValueType = {
   phone?: string;
   captcha?: string;
+  password?: string;
 } & Partial<API.RuleListItem>;
 export type PhoneDialogProps = {
   isModalVisible: boolean;
@@ -40,9 +41,6 @@ const PhoneDialog: React.FC<PhoneDialogProps> = (props) => {
         if (step === 1) {
           console.log('values step1', values)
           formRef.current?.resetFields();
-          formRef.current?.setFieldsValue({
-            phone: '',
-          });
           setStep(2)
         } else {
           props.onSubmit(values)
@@ -69,48 +67,57 @@ const PhoneDialog: React.FC<PhoneDialogProps> = (props) => {
     >
       {step === 1 ? (
         <div className={styles.phoneDialogTip}><ExclamationCircleTwoTone /> 为保证账号安全，该操作需验证身份</div>
-      ) : (<div className={styles.phoneDialogTip}>平台需要对新手机号进行验证</div>)}
+      ) : (<div className={styles.phoneDialogTip}>新修改密码</div>)}
       <ProFormText
         fieldProps={{
           size: 'large',
           prefix: <MobileOutlined />,
-          disabled: step === 1
+          disabled: true
         }}
         name="phone"
         placeholder="请输入手机号"
         rules={[
-          {
-            required: true,
-            message: '请输入手机号!',
-          },
-          {
-            pattern: /^1\d{10}$/,
-            message: '不合法的手机号格式!',
-          },
         ]}
       />
-      <ProFormCaptcha
-        fieldProps={{
-          size: 'large',
-          prefix: <MailOutlined />,
-        }}
-        captchaProps={{
-          size: 'large',
-        }}
-        phoneName="phone"
-        name="captcha"
-        rules={[
-          {
-            required: true,
-            message: '请输入验证码',
-          },
-        ]}
-        placeholder="请输入验证码"
-        onGetCaptcha={async (phone) => {
-          await waitTime(1000);
-          message.success(`手机号 ${phone} 验证码发送成功!`);
-        }}
-      />
+      {step === 1 ?
+        (<ProFormCaptcha
+          fieldProps={{
+            size: 'large',
+            prefix: <MailOutlined />,
+          }}
+          captchaProps={{
+            size: 'large',
+          }}
+          phoneName="phone"
+          name="captcha"
+          rules={[
+            {
+              required: true,
+              message: '请输入验证码',
+            },
+          ]}
+          placeholder="请输入验证码"
+          onGetCaptcha={async (phone) => {
+            await waitTime(1000);
+            message.success(`手机号 ${phone} 验证码发送成功!`);
+          }}
+        />)
+        : (<ProFormText.Password
+          name="password"
+          fieldProps={{
+            size: 'large',
+            prefix: <LockOutlined className={styles.prefixIcon} />,
+          }}
+          placeholder="密码:"
+          rules={[
+            {
+              required: true,
+              message: '密码是必填项！',
+            },
+          ]}
+        />)
+      }
+
     </ModalForm>
   );
 };
