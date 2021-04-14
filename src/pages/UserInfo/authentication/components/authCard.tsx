@@ -2,20 +2,34 @@ import React, { useState } from 'react';
 import ProCard from '@ant-design/pro-card';
 import { Button } from 'antd';
 import styles from '../index.less';
-
+import '../index.less';
+export type AuthInfoType = {
+  status?: number;
+  date?: string;
+  reason?: string;
+  disabled?: boolean;
+};
 export type CardProps = {
   onSubmit: () => void;
   title: string;
-  authInfo: Object; // 未认证 认证失败 认证中 已认证
+  authInfo: AuthInfoType; // 未认证 认证失败 认证中 已认证
 };
+const operationButton: React.FC<CardProps> = (props) => {
+  return (
+    <>
+      {props.authInfo.status === 1 && <Button type="primary" block size="large" disabled={props.authInfo.disabled} onClick={() => props.onSubmit()}>开始认证</Button>}
+      {props.authInfo.status === 2 && <Button type="primary" block size="large" disabled={props.authInfo.disabled} onClick={() => props.onSubmit()}>重新认证</Button>}
+    </>
+  )
+
+
+}
 const AuthenticationCard: React.FC<CardProps> = (props) => {
   return (
     <ProCard title={props.title} type="inner" bordered
-      className={styles.authCardItem}
+      className="authCardItem"
       actions={[
-        props.authInfo.status !== 1 && <Button type="primary" block size="large" onClick={() => props.onSubmit()}>
-          开始认证
-              </Button>,
+        operationButton(props),
       ]}
       style={{ height: 300 }}
       headerBordered={false}>

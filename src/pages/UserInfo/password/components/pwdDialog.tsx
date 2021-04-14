@@ -13,13 +13,13 @@ export type FormValueType = {
   captcha?: string;
   password?: string;
 } & Partial<API.RuleListItem>;
-export type PhoneDialogProps = {
+export type PwdDialogProps = {
   isModalVisible: boolean;
   onSubmit: (values: FormValueType) => Promise<void>;
   onVisibleChange: (flag: boolean) => void;
   // step: number;
 };
-const PhoneDialog: React.FC<PhoneDialogProps> = (props) => {
+const PwdDialog: React.FC<PwdDialogProps> = (props) => {
   const formRef = useRef<FormInstance>();
   const [step, setStep] = useState(1);
   const [initPhone, setInitPhone] = useState<string>('17722222222')
@@ -66,8 +66,8 @@ const PhoneDialog: React.FC<PhoneDialogProps> = (props) => {
       onValuesChange={(changeValues) => console.log('onValueChange', changeValues)}
     >
       {step === 1 ? (
-        <div className={styles.phoneDialogTip}><ExclamationCircleTwoTone /> 为保证账号安全，该操作需验证身份</div>
-      ) : (<div className={styles.phoneDialogTip}>新修改密码</div>)}
+        <div className={styles.PwdDialogTip}><ExclamationCircleTwoTone twoToneColor="#E7A543" /> 为保证账号安全，该操作需验证身份</div>
+      ) : (<div className={styles.PwdDialogTip}>新修改密码</div>)}
       <ProFormText
         fieldProps={{
           size: 'large',
@@ -122,4 +122,4 @@ const PhoneDialog: React.FC<PhoneDialogProps> = (props) => {
   );
 };
 
-export default PhoneDialog;
+export default PwdDialog;

@@ -68,7 +68,7 @@ const PhoneDialog: React.FC<PhoneDialogProps> = (props) => {
       onValuesChange={(changeValues) => console.log('onValueChange', changeValues)}
     >
       {step === 1 ? (
-        <div className={styles.phoneDialogTip}><ExclamationCircleTwoTone /> 为保证账号安全，该操作需验证身份</div>
+        <div className={styles.phoneDialogTip}><ExclamationCircleTwoTone twoToneColor="#E7A543" /> 为保证账号安全，该操作需验证身份</div>
       ) : (<div className={styles.phoneDialogTip}>平台需要对新手机号进行验证</div>)}
       <ProFormText
         fieldProps={{

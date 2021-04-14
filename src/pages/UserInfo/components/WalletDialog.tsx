@@ -17,7 +17,7 @@ const WalletDialog: React.FC<WalletDialogProps> = (props) => {
         </Button>
       ]}>
       <div className={styles.walletDialogContent}>
-        <ExclamationCircleTwoTone />
+        <ExclamationCircleTwoTone twoToneColor="#E7A543" />
         <div className={styles.walletDialogDesc}>
           <p>当前浏览器未检测到您的钱包信息，您可能在本次登录前清除了浏览器缓存，或您正在使用新的电脑设备（非首次创建钱包的电脑设备）</p>
           <p>您需要在浏览器中恢复钱包，才能进行上链操作，建议您立即恢复。</p>

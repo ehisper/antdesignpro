@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { EllipsisOutlined, SettingOutlined, EditOutlined, CheckCircleTwoTone, WarningOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, SettingOutlined, EditOutlined, CheckCircleTwoTone, ExclamationCircleTwoTone } from '@ant-design/icons';
 import { Button, Dropdown, Menu, Card, Avatar, Row, Col } from 'antd';
 
 import { Link, useModel, history } from 'umi';
@@ -46,7 +46,7 @@ const UserInfo: React.FC = () => {
               ]}
             >
               <Meta
-                title={<>我的实名认证&nbsp;&nbsp;<WarningOutlined twoToneColor="#eb2f96" /></>}
+                title={<>我的实名认证&nbsp;&nbsp;<ExclamationCircleTwoTone twoToneColor="#E7A543" /></>}
                 description="未认证"
               />
             </Card>
@@ -76,7 +76,7 @@ const UserInfo: React.FC = () => {
               ]}
             >
               <Meta
-                title={<>我的数字钱包&nbsp;&nbsp;<WarningOutlined twoToneColor="#eb2f96" /></>}
+                title={<>我的数字钱包&nbsp;&nbsp;<ExclamationCircleTwoTone twoToneColor="#E7A543" /></>}
                 description="钱包未生成"
               />
             </Card>

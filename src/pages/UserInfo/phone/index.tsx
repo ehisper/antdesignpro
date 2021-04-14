@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Button, Card, message } from 'antd';
-import type { FormValueType } from './components/PwdDialog';
-import PwdDialog from './components/PwdDialog'
+import type { FormValueType } from './components/phoneDialog';
+import PhoneDialog from './components/phoneDialog'
 
-const BindPwd: React.FC = () => {
+const BindPhone: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const waitTime = (time: number = 100) => {
     return new Promise((resolve) => {
@@ -21,13 +21,14 @@ const BindPwd: React.FC = () => {
     setIsModalVisible(false);
   };
 
+
   return (
     <PageContainer>
       <Card>
-        <p>设置新密码</p>
-        <Button onClick={() => { setIsModalVisible(true) }}>修改密码</Button>
+        <p>现绑定手机号： 131****1111</p>
+        <Button onClick={() => { setIsModalVisible(true) }}>更换手机号</Button>
       </Card>
-      <PwdDialog
+      <PhoneDialog
         isModalVisible={isModalVisible}
         onSubmit={handleSubmit}
         onVisibleChange={setIsModalVisible}
@@ -35,4 +36,4 @@ const BindPwd: React.FC = () => {
     </PageContainer>
   );
 };
-export default BindPwd
+export default BindPhone
